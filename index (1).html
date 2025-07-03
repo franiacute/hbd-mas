@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Mas</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#a8c5ff, #d5e2ff);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #2a2a2a;
+      text-align: center;
+      transition: background 1s;
+      background-image: url("mas.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      max-width: 500px;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    .message {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      min-height: 100px;
+    }
+    button {
+      background: #4f6ef7;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #3b56cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="message" id="message">Hari ini ada yang ulang tahun ya?</div>
+    <button id="nextBtn">Pencet di sini</button>
+  </div>
+
+  <!-- Audio player disembunyikan -->
+  <audio id="bgm" loop>
+    <source src="https://dl.sndup.net/npr3/Best%20Part%20-%20Daniel%20Caesar%20ft.%20H.E.R..mp3" type="audio/mp3">
+    Browser kamu nggak mendukung audio.
+  </audio>
+
+  <script>
+    const messages = [
+      "Hmm... iya, kayaknya kamu.",
+      "Selamat ulang tahun, Mas.",
+      "Kamu yang (sok) kuat dan jarang cerita.",
+      "Mungkin aku nggak selalu ada di semua momenmu...",
+      "Tapi aku pengen kamu tahu...",
+      "Aku senang kenal kamu.",
+      "Nggak selalu gampang, tapi selalu bikin aku ngerasa... hangat.",
+      "Semoga tahun ini kamu tetap waras.",
+      "Dikelilingi orang yang nggak cuma ada, tapi ngerti.",
+      "Nesya sayang sama kamu, Mas.",
+      "Walau aku nggak tahu sebaliknya gimana...",
+      "Tapi makasih ya, udah nemenin aku belakangan ini.",
+      "Love you.",
+      "Senyum dikit nggak apa-apa kok 😊"
+    ];
+
+    let i = 0;
+    const msg = document.getElementById('message');
+    const btn = document.getElementById('nextBtn');
+    const bgm = document.getElementById('bgm');
+    let musicStarted = false;
+
+    btn.addEventListener('click', () => {
+      if (!musicStarted) {
+        bgm.play().catch(e => console.log("Autoplay gagal:", e));
+        musicStarted = true;
+      }
+
+      if (i < messages.length) {
+        msg.textContent = messages[i];
+        i++;
+      } else {
+        msg.textContent = "Selesai 💙";
+        btn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
